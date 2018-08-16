@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng-explorer';
+  
+  private seed: number = 0;
+  constructor() {
+    this.seed =  Math.floor(Math.random() * 10);
+  }
+
+  public getFlag(): boolean {
+    return this.seed % 2 == 0;
+  }
 }
