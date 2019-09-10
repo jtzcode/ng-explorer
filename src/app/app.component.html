@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div [craftMan]="getFlag()" style="text-align:center">
+<div>
   <h1>
     Welcome to {{ title }}!
   </h1>
@@ -16,8 +16,10 @@
   <li>
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
-  <li>
-    <h2>{{ 'hello' | translate }}</h2><button (click)="changeLanguage()">Switch Language</button>
-  </li>
 </ul>
+<div>
+  <!-- <change-detect-observable [items]="observableItems"></change-detect-observable> -->
+  <button (click)="add()">Add items</button>
+  <change-detect-async [items]="items$"></change-detect-async>
+</div>
 

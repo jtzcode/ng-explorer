@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { Observable, timer, BehaviorSubject } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { Item } from './models/item';
 
 @Component({
   selector: 'app-root',
@@ -8,19 +10,16 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'ng-explorer';
-  
-  private seed: number = 0;
-  constructor(private translateService: TranslateService) {
-    this.seed =  Math.floor(Math.random() * 10);
-    translateService.setDefaultLang('en');
-    translateService.use('en');
+  observableItems: Observable<number>;
+  items = [];
+  items$ = new BehaviorSubject(this.items);
+
+  add() {
+    this.items.push(new Item(Math.random().toString(), "TITLE"));
+    this.items$.next(this.items);
   }
 
-  public changeLanguage(): void {
-    this.translateService.currentLang === 'en' ? this.translateService.use('zh') : this.translateService.use('en');
-  }
-
-  public getFlag(): boolean {
-    return this.seed % 2 == 0;
+  constructor() {
+    this.observableItems = timer(100, 100).pipe(take(101));
   }
 }
