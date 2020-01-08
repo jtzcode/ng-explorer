@@ -33,3 +33,17 @@ function excludeProperties(propertiesToExclude: string[]) {
         }
      };
 }
+
+
+// class UserService {
+//   private user = userModel;
+ 
+//   @excludeProperties(['password'])
+//   private getUser = async (userId: string) => {
+//     const user = await this.user.findById(userId);
+//     if (user) {
+//       return user;
+//     }
+//     throw `exception: ${userId}`;
+//   }
+// }
